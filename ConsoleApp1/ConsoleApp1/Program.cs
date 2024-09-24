@@ -63,10 +63,10 @@ namespace ConsoleApp1
                 this.isBought = isBought;
                 this.isEquipped = isEquipped;
             }
-            public string itemInfo()
+            public string itemInfo(string position)
             {
                 string temp = "   ";
-                if (isEquipped == true)
+                if (isEquipped == true&&position=="inventory")
                 {
                     temp = "";
                 }
@@ -82,9 +82,9 @@ namespace ConsoleApp1
                 items[0] = new item("수련자 갑옷    ", "방어력", 5, "수련에 도움을 주는 갑옷입니다.                     ", 1000, false,false);
                 items[1] = new item("무쇠 갑옷      ", "방어력", 9, "무쇠로 만들어져 튼튼한 갑옷입니다.                 ", 2000, false,false);
                 items[2] = new item("스파르타의 갑옷", "방어력", 15, "스파르타의 전사들이 사용했다는 전설의 갑옷입니다. ", 3500, false,false);
-                items[3] = new item("낡은 검        ", "방어력", 2, "쉽게 볼 수 있는 낡은 검 입니다.                    ", 600, false,false);
-                items[4] = new item("청동 도끼      ", "방어력", 5, "어디선가 사용됐던거 같은 도끼입니다.               ", 1500, false,false);
-                items[5] = new item("스파르타의 창  ", "방어력", 7, "스파르타의 전사들이 사용했다는 전설의 창입니다.    ", 3000, false,false);
+                items[3] = new item("낡은 검        ", "공격력", 2, "쉽게 볼 수 있는 낡은 검 입니다.                    ", 600, false,false);
+                items[4] = new item("청동 도끼      ", "공격력", 5, "어디선가 사용됐던거 같은 도끼입니다.               ", 1500, false,false);
+                items[5] = new item("스파르타의 창  ", "공격력", 7, "스파르타의 전사들이 사용했다는 전설의 창입니다.    ", 3000, false,false);
             }
 
         }
@@ -185,11 +185,18 @@ namespace ConsoleApp1
         public static void Inventory(Character me) 
         {
             int a = 0;
+            int count = 0;
             Console.Clear();
             Console.WriteLine($"인벤토리\n보유 중인 아이템을 관리할 수 있습니다.\n\n[아이템 목록]\n"); 
             foreach(item item in me.inventory)
             {
-                Console.WriteLine("- "+item.itemInfo());
+                Console.Write($"- ");
+                if (me.inventory[count].isEquipped == true)
+                {
+                    Console.Write("[E]");
+                }
+                Console.WriteLine(item.itemInfo("inventory"));
+                count++;
             }
             Console.Write("\n1. 장착 관리\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
             while (a == 0)
@@ -229,7 +236,7 @@ namespace ConsoleApp1
                     {
                         Console.Write("[E]");
                     }
-                    Console.WriteLine(me.inventory[count-1].itemInfo());
+                    Console.WriteLine(me.inventory[count-1].itemInfo("inventory"));
                 }
                 Console.Write("\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
                 while (b == 0)
@@ -279,7 +286,7 @@ namespace ConsoleApp1
                             {
                                 foreach (item item in me.inventory)
                                 {
-                                    if (item.isEquipped == true && item.stat == "방어력")
+                                    if (item.isEquipped == true && item.stat == "공격력")
                                     {
                                         item.isEquipped = false;
                                         me.def -= item.statNum;
@@ -307,7 +314,7 @@ namespace ConsoleApp1
                 $"[보유 골드]\n{me.gold} G\n\n[아이템 목록]\n");
             foreach (item item in itemlist.items)
             {
-                Console.Write($"- {item.itemInfo()}| ");
+                Console.Write($"- {item.itemInfo("shop")}| ");
                 if (item.isBought == true)
                 {
                     Console.WriteLine(" 구매완료");
@@ -317,7 +324,7 @@ namespace ConsoleApp1
                     Console.WriteLine($" {item.price}G");
                 }
             }
-            Console.Write("\n1. 아이템 구매\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
+            Console.Write("\n1. 아이템 구매\n2. 아이템 판매\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
             while (a == 0)
             {
                 string? choice = Console.ReadLine();
@@ -357,7 +364,7 @@ namespace ConsoleApp1
                 foreach (item item in itemlist.items)
                 {
                     count++;
-                    Console.Write($"- {count} {item.itemInfo()}| ");
+                    Console.Write($"- {count} {item.itemInfo("shop")}| ");
                     if (item.isBought == true)
                     {
                         Console.WriteLine(" 구매완료");
@@ -461,7 +468,7 @@ namespace ConsoleApp1
                     {
                         Console.Write("[E]");
                     }
-                    Console.WriteLine($"{me.inventory[count - 1].itemInfo()} | {me.inventory[count - 1].price*9/10}");
+                    Console.WriteLine($"{me.inventory[count - 1].itemInfo("inventory")} | {me.inventory[count - 1].price*9/10}");
                 }
                 Console.Write("\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
                 while (b == 0)
@@ -469,7 +476,7 @@ namespace ConsoleApp1
                     string? choice = Console.ReadLine();
                     if (choice == "0")
                     {
-                        Inventory(me);
+                        Shop(me);
                         a = 1;
                         b = 1;
                     }
@@ -578,6 +585,7 @@ namespace ConsoleApp1
                 $"[탐험 결과]\n체력 {me.hp} -> {me.hp - damage}\nGold {me.gold}G -> {me.gold + reward + reward * bonus / 100}G\n\n");
                 me.hp -= damage;
                 me.gold += reward + reward * bonus / 100;
+                me.ClearStage();
             }
             else
             {
