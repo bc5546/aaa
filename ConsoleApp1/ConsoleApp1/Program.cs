@@ -79,13 +79,13 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             int a=0;
-            string choice;
+            string? choice;
             itemlist = new itemList();
             while (a==0)
             {
                 Console.Clear();
                 Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.\n원하시는 이름을 결정해주세요.");
-                string name = Console.ReadLine();
+                string? name = Console.ReadLine();
                 Console.Write($"입력하신 이름은 {name}입니다.\n\n1.저장\n2.취소\n\n원하시는 행동을 입력해주세요.\n>>");
                 while (true)
                 {
@@ -116,7 +116,7 @@ namespace ConsoleApp1
                 "1. 상태보기\n2. 인벤토리\n3. 상점\n4. 던전입장(종료)\n5. 휴식\n\n원하시는 행동을 입력해주세요.\n>>");
             while (a==0)
             {
-                string choice = Console.ReadLine();
+                string? choice = Console.ReadLine();
                 if (choice == "1")
                 {
                     Status(me);
@@ -138,7 +138,7 @@ namespace ConsoleApp1
                 }
                 else if (choice == "5")
                 {
-                    rest(me);
+                    Rest(me);
                     a = 1;
                 }
                 else
@@ -156,7 +156,7 @@ namespace ConsoleApp1
                 "0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
             while (a == 0)
             {
-                string choice = Console.ReadLine();
+                string? choice = Console.ReadLine();
                 if (choice == "0")
                 {
                     GameStart(me);
@@ -180,7 +180,7 @@ namespace ConsoleApp1
             Console.Write("\n1. 장착 관리\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
             while (a == 0)
             {
-                string choice = Console.ReadLine();
+                string? choice = Console.ReadLine();
                 if (choice == "0")
                 {
                     GameStart(me);
@@ -220,7 +220,7 @@ namespace ConsoleApp1
                 Console.Write("\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
                 while (b == 0)
                 {
-                    string choice = Console.ReadLine();
+                    string? choice = Console.ReadLine();
                     if (choice == "0")
                     {
                         Inventory(me);
@@ -306,7 +306,7 @@ namespace ConsoleApp1
             Console.Write("\n1. 아이템 구매\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
             while (a == 0)
             {
-                string choice = Console.ReadLine();
+                string? choice = Console.ReadLine();
                 if (choice == "0")
                 {
                     GameStart(me);
@@ -356,7 +356,7 @@ namespace ConsoleApp1
                 Console.Write("\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
                 while (b == 0)
                 {
-                    string choice = Console.ReadLine();
+                    string? choice = Console.ReadLine();
                     if (choice == "0")
                     {
                         Shop(me);
@@ -391,7 +391,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static void rest(Character me)
+        public static void Rest(Character me)
         {
             int a = 0;
             Console.Clear();
@@ -399,7 +399,7 @@ namespace ConsoleApp1
                 "1. 휴식하기\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
             while (a == 0)
             {
-                string choice = Console.ReadLine();
+                string? choice = Console.ReadLine();
                 if (choice == "0")
                 {
                     GameStart(me);
@@ -452,7 +452,7 @@ namespace ConsoleApp1
                 Console.Write("\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
                 while (b == 0)
                 {
-                    string choice = Console.ReadLine();
+                    string? choice = Console.ReadLine();
                     if (choice == "0")
                     {
                         Inventory(me);
