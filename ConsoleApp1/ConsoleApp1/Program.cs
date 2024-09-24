@@ -428,8 +428,8 @@ namespace ConsoleApp1
                         Console.Write("휴식을 완료했습니다.\n>>");
                         int x=Console.GetCursorPosition().Left;
                         int y = Console.GetCursorPosition().Top;
-                        Console.SetCursorPosition(35, 0);
-                        Console.Write($"{me.gold}G   ");
+                        Console.SetCursorPosition(53, 1);
+                        Console.Write($"{me.gold}G)   ");
                         Console.SetCursorPosition(x,y);
                     }
                     else
@@ -539,14 +539,14 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static void DungeonResult(Character me,int difficulty)
+        public static void DungeonResult(Character me, int difficulty)
         {
             int a = 0;
-            int recommend=0;
+            int recommend = 0;
             bool cleared;
             int damage;
-            int reward=0;
-            string dif="";
+            int reward = 0;
+            string dif = "";
             int bonus = 0;
             Random random = new Random();
             switch (difficulty)
@@ -564,38 +564,58 @@ namespace ConsoleApp1
                     cleared = true;
                 }
             }
-            else { 
-                cleared = true; 
+            else
+            {
+                cleared = true;
             }
-            damage=random.Next(20,36);
+            damage = random.Next(20, 36);
             damage = damage + recommend - me.def;
-            bonus = random.Next((int)me.atk,(int)me.atk+1);
+            bonus = random.Next((int)me.atk, (int)me.atk + 1);
             Console.Clear();
-            if (cleared) {
+            if (cleared)
+            {
                 Console.Write($"던전 클리어\n축하합니다!!\n{dif} 던전을 클리어 하였습니다.\n\n" +
-                $"[탐험 결과]\n체력 {me.hp} -> {me.hp-damage}\nGold {me.gold}G -> {me.gold+reward+reward*bonus/100}G\n\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
+                $"[탐험 결과]\n체력 {me.hp} -> {me.hp - damage}\nGold {me.gold}G -> {me.gold + reward + reward * bonus / 100}G\n\n");
                 me.hp -= damage;
                 me.gold += reward + reward * bonus / 100;
             }
             else
             {
-                Console.Write($"던전 클리어 실패\n유감입니다\n{dif} 던전을 클리어 하지 못했습니다.\n\n" +
-                $"[탐험 결과]\n체력 {me.hp} -> {me.hp - damage/2}\n\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
+                Console.Write($"던전 클리어 실패\n유감입니다...\n{dif} 던전을 클리어 하지 못했습니다.\n\n" +
+                $"[탐험 결과]\n체력 {me.hp} -> {me.hp - damage / 2}\n\n");
                 me.hp -= damage / 2;
             }
-            
-            
-            while (a == 0)
+            if (me.hp <= 0)
             {
-                string? choice = Console.ReadLine();
-                if (choice == "0")
+                Console.Write($"{me.name} 캐릭터가 사망했습니다...\n\n0.게임종료\n\n원하시는 행동을 입력해주세요.\n >> ");
+                while (a == 0)
                 {
-                    GameStart(me);
-                    a = 1;
+                    string? choice = Console.ReadLine();
+                    if (choice == "0")
+                    {
+                        a = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
+                    }
                 }
-                else
+            }
+            else
+            {
+                Console.Write("0.나가기\n\n원하시는 행동을 입력해주세요.\n >> ");
+                while (a == 0)
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
+                    string? choice = Console.ReadLine();
+                    if (choice == "0")
+                    {
+                        GameStart(me);
+                        a = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
+                    }
                 }
             }
         }
