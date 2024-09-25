@@ -1,6 +1,7 @@
 ﻿
 using System.Dynamic;
 using System.Reflection.PortableExecutable;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Linq;
 
 namespace ConsoleApp1
@@ -8,7 +9,8 @@ namespace ConsoleApp1
     
     internal class Program
     {
-        public static itemList? itemlist;
+        public static ItemList? itemlist;
+        [Serializable]
         public class Character
         {
             public int level;
@@ -44,6 +46,7 @@ namespace ConsoleApp1
                 }
             }
         }
+        [Serializable]
         public class item 
         {
             public string name;
@@ -73,11 +76,11 @@ namespace ConsoleApp1
                 return $"{name}{temp}| {stat} + {statNum} | {content}";
             }
         }
-
-        public class itemList 
+        [Serializable]
+        public class ItemList 
         {
              public item[] items=new item[6];
-             public itemList()
+             public ItemList()
             {
                 items[0] = new item("수련자 갑옷    ", "방어력", 5, "수련에 도움을 주는 갑옷입니다.                     ", 1000, false,false);
                 items[1] = new item("무쇠 갑옷      ", "방어력", 9, "무쇠로 만들어져 튼튼한 갑옷입니다.                 ", 2000, false,false);
@@ -88,12 +91,94 @@ namespace ConsoleApp1
             }
 
         }
+        [Serializable]
+        public class DataField
+        {
+            public int level;
+            public string name;
+            public string job;
+            public float atk;
+            public int def;
+            public int hp;
+            public int gold;
+            public List<item> inventory;
+            public int exp;
+            public ItemList itemList;
+
+        }
+        static void SaveData(Character me, ItemList itemList)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(".\\data.dat", FileMode.Create);
+
+            DataField filesaver = new DataField();
+
+            filesaver.level=me.level;
+            filesaver.name = me.name;
+            filesaver.job = me.job;
+            filesaver.atk = me.atk;
+            filesaver.def = me.def;
+            filesaver.hp = me.hp;
+            filesaver.gold = me.gold;
+            filesaver.inventory = me.inventory;
+            filesaver.exp = me.exp;
+            filesaver.itemList=itemlist;
+
+            bf.Serialize(fs, filesaver);
+            fs.Close();
+        }
+
+        static void LoadData(Character me, ItemList itemList)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(".\\data.dat", FileMode.Open);
+
+            DataField filesaver = new DataField();
+            filesaver=bf.Deserialize(fs) as DataField;
+            me.level=filesaver.level ;
+            me.name=filesaver.name ;
+            me.job=filesaver.job ;
+            me.atk=filesaver.atk ;
+            me.def=filesaver.def ;
+            me.hp=filesaver.hp ;
+            me.gold=filesaver.gold ;
+            me.exp = filesaver.exp ;
+            itemlist=filesaver.itemList ;
+            me.inventory=filesaver.inventory ;
+            fs.Close();
+        }
 
         static void Main(string[] args)
         {
             int a=0;
             string? choice;
-            itemlist = new itemList();
+            itemlist = new ItemList();
+            if (File.Exists(".\\data.dat"))
+            {
+                Console.Write($"저장된 데이터가 있습니다.\n불러오시겠습니까?\n\n1.불러오기\n2.새로 시작\n\n원하시는 행동을 입력해주세요.\n>>");
+                while (true)
+                {
+                    choice = Console.ReadLine();
+                    if (choice == "1")
+                    {
+                        Character me = new Character("");
+                        LoadData(me, itemlist);
+                        GameStart(me);
+                        a = 1;
+                        break;
+                    }
+                    else if (choice == "2")
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
+                    }
+                }
+            }
+            
+
             while (a==0)
             {
                 Console.Clear();
@@ -126,7 +211,7 @@ namespace ConsoleApp1
             int a = 0;
             Console.Clear();
             Console.Write("스파르타 마을에 오신 여러분 환영합니다.\n이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.\n\n" +
-                "1. 상태보기\n2. 인벤토리\n3. 상점\n4. 던전입장\n5. 휴식\n\n원하시는 행동을 입력해주세요.\n>>");
+                "1. 상태보기\n2. 인벤토리\n3. 상점\n4. 던전입장\n5. 휴식\n6. 저장\n\n원하시는 행동을 입력해주세요.\n>>");
             while (a==0)
             {
                 string? choice = Console.ReadLine();
@@ -154,6 +239,11 @@ namespace ConsoleApp1
                 {
                     Rest(me);
                     a = 1;
+                }
+                else if (choice == "6")
+                {
+                    SaveData(me,itemlist);
+                    Console.Write("저장되었습니다.\n>> ");
                 }
                 else
                 {
@@ -460,6 +550,8 @@ namespace ConsoleApp1
                 int count = 0;
                 Console.Clear();
                 Console.WriteLine($"상점 - 아이템 판매\n필요한 아이템을 얻을 수 있는 상점입니다.\n\n[보유 골드]\n{me.gold} G\n\n[아이템 목록]");
+                if (me.inventory[0] != null)
+                {
                 foreach (item item in me.inventory)
                 {
                     count += 1;
@@ -470,6 +562,8 @@ namespace ConsoleApp1
                     }
                     Console.WriteLine($"{me.inventory[count - 1].itemInfo("inventory")} | {me.inventory[count - 1].price*9/10}");
                 }
+                }
+                
                 Console.Write("\n0. 나가기\n\n원하시는 행동을 입력해주세요.\n>>");
                 while (b == 0)
                 {
@@ -500,6 +594,7 @@ namespace ConsoleApp1
                             
                         }
                         me.gold += selected.price * 9 / 10;
+                        selected.isBought = false;
                         me.inventory[int.Parse(choice) - 1] = null;
                         b = 1;
                     }
