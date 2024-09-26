@@ -10,7 +10,7 @@ namespace ConsoleApp1
     internal class Program
     {
         public static ItemList? itemlist;
-        [Serializable]
+        /*[Serializable]
         public class Character
         {
             public int level;
@@ -105,7 +105,7 @@ namespace ConsoleApp1
             public int exp;
             public ItemList itemList;
 
-        }
+        }*/
         static void SaveData(Character me, ItemList itemList)
         {
             BinaryFormatter bf = new BinaryFormatter();

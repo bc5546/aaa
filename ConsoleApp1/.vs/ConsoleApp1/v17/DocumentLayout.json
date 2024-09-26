@@ -5,6 +5,22 @@
     {
       "AbsoluteMoniker": "D:0:0:{75BE1791-E691-4D3C-AE28-AD6A876F131A}|ConsoleApp1\\ConsoleApp1.csproj|c:\\users\\samsung\\documents\\github\\aaa\\consoleapp1\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{75BE1791-E691-4D3C-AE28-AD6A876F131A}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75BE1791-E691-4D3C-AE28-AD6A876F131A}|ConsoleApp1\\ConsoleApp1.csproj|c:\\users\\samsung\\documents\\github\\aaa\\consoleapp1\\consoleapp1\\itemlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75BE1791-E691-4D3C-AE28-AD6A876F131A}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\itemlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75BE1791-E691-4D3C-AE28-AD6A876F131A}|ConsoleApp1\\ConsoleApp1.csproj|c:\\users\\samsung\\documents\\github\\aaa\\consoleapp1\\consoleapp1\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75BE1791-E691-4D3C-AE28-AD6A876F131A}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75BE1791-E691-4D3C-AE28-AD6A876F131A}|ConsoleApp1\\ConsoleApp1.csproj|c:\\users\\samsung\\documents\\github\\aaa\\consoleapp1\\consoleapp1\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75BE1791-E691-4D3C-AE28-AD6A876F131A}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75BE1791-E691-4D3C-AE28-AD6A876F131A}|ConsoleApp1\\ConsoleApp1.csproj|c:\\users\\samsung\\documents\\github\\aaa\\consoleapp1\\consoleapp1\\datafield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75BE1791-E691-4D3C-AE28-AD6A876F131A}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\datafield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +30,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ItemList.cs",
+              "DocumentMoniker": "C:\\Users\\samsung\\Documents\\GitHub\\aaa\\ConsoleApp1\\ConsoleApp1\\ItemList.cs",
+              "RelativeDocumentMoniker": "ConsoleApp1\\ItemList.cs",
+              "ToolTip": "C:\\Users\\samsung\\Documents\\GitHub\\aaa\\ConsoleApp1\\ConsoleApp1\\ItemList.cs",
+              "RelativeToolTip": "ConsoleApp1\\ItemList.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T02:54:38.155Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Character.cs",
+              "DocumentMoniker": "C:\\Users\\samsung\\Documents\\GitHub\\aaa\\ConsoleApp1\\ConsoleApp1\\Character.cs",
+              "RelativeDocumentMoniker": "ConsoleApp1\\Character.cs",
+              "ToolTip": "C:\\Users\\samsung\\Documents\\GitHub\\aaa\\ConsoleApp1\\ConsoleApp1\\Character.cs",
+              "RelativeToolTip": "ConsoleApp1\\Character.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T02:54:06.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "item.cs",
+              "DocumentMoniker": "C:\\Users\\samsung\\Documents\\GitHub\\aaa\\ConsoleApp1\\ConsoleApp1\\item.cs",
+              "RelativeDocumentMoniker": "ConsoleApp1\\item.cs",
+              "ToolTip": "C:\\Users\\samsung\\Documents\\GitHub\\aaa\\ConsoleApp1\\ConsoleApp1\\item.cs",
+              "RelativeToolTip": "ConsoleApp1\\item.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T02:52:54.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DataField.cs",
+              "DocumentMoniker": "C:\\Users\\samsung\\Documents\\GitHub\\aaa\\ConsoleApp1\\ConsoleApp1\\DataField.cs",
+              "RelativeDocumentMoniker": "ConsoleApp1\\DataField.cs",
+              "ToolTip": "C:\\Users\\samsung\\Documents\\GitHub\\aaa\\ConsoleApp1\\ConsoleApp1\\DataField.cs",
+              "RelativeToolTip": "ConsoleApp1\\DataField.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T02:52:07.474Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +92,7 @@
               "RelativeDocumentMoniker": "ConsoleApp1\\Program.cs",
               "ToolTip": "C:\\Users\\samsung\\Documents\\GitHub\\aaa\\ConsoleApp1\\ConsoleApp1\\Program.cs",
               "RelativeToolTip": "ConsoleApp1\\Program.cs",
-              "ViewState": "AgIAALsCAAAAAAAAAAAMwFQCAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAHUAAAAAAAAAAADgv3kAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-24T05:20:12.613Z",
               "EditorCaption": ""
