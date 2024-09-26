@@ -2,6 +2,7 @@
 using System.Dynamic;
 using System.Reflection.PortableExecutable;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 using System.Xml.Linq;
 
 namespace ConsoleApp1
@@ -106,11 +107,11 @@ namespace ConsoleApp1
             public ItemList itemList;
 
         }*/
-        static void SaveData(Character me, ItemList itemList)//저장
+        /*static void SaveData(Character me, ItemList itemList)//저장
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = new FileStream(".\\data.dat", FileMode.Create);
-
+            
             DataField filesaver = new DataField();
 
             filesaver.level=me.level;
@@ -123,8 +124,9 @@ namespace ConsoleApp1
             filesaver.inventory = me.inventory;
             filesaver.exp = me.exp;
             filesaver.itemList=itemlist;
-
+            
             bf.Serialize(fs, filesaver);
+            
             fs.Close();
         }
 
@@ -146,7 +148,7 @@ namespace ConsoleApp1
             itemlist=filesaver.itemList ;
             me.inventory=filesaver.inventory ;
             fs.Close();
-        }
+        }*/
 
         static void Main(string[] args)
         {
@@ -162,7 +164,7 @@ namespace ConsoleApp1
                     if (choice == "1")
                     {
                         Character me = new Character("");
-                        LoadData(me, itemlist);
+                        SaveAndLoad.LoadData(me, itemlist);
                         GameStart(me);
                         a = 1;
                         break;
@@ -211,39 +213,44 @@ namespace ConsoleApp1
             int a = 0;
             Console.Clear();
             Console.Write("스파르타 마을에 오신 여러분 환영합니다.\n이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.\n\n" +
-                "1. 상태보기\n2. 인벤토리\n3. 상점\n4. 던전입장\n5. 휴식\n6. 저장\n\n원하시는 행동을 입력해주세요.\n>>");
+                "1. 상태보기\n2. 인벤토리\n3. 상점\n4. 던전입장\n5. 휴식\n6. 저장\n0. 게임종료\n\n원하시는 행동을 입력해주세요.\n>>");
             while (a==0)
             {
                 string? choice = Console.ReadLine();
                 if (choice == "1")
                 {
-                    Status(me);
+                    Status.EnterStatus(me);
                     a = 1;
                 }
                 else if (choice == "2")
                 {
-                    Inventory(me);
+                    Inventory.EnterInventory(me);
                     a = 1;
                 }
                 else if(choice == "3")
                 {
-                    Shop(me);
+                    Shop.EnterShop(me);
                     a = 1;
                 }
                 else if (choice == "4")
                 {
-                    EnterDungeon(me);
+                    Dungeon.EnterDungeon(me);
                     a = 1;
                 }
                 else if (choice == "5")
                 {
-                    Rest(me);
+                    Rest.EnterRest(me);
                     a = 1;
                 }
                 else if (choice == "6")
                 {
-                    SaveData(me,itemlist);
-                    Console.Write("저장되었습니다.\n>> ");
+                    SaveAndLoad.SaveData(me,itemlist);
+                    Console.Write("\n저장되었습니다.\n>> ");
+                }
+                else if (choice == "0")
+                {
+                    a = 1;
+                    Console.WriteLine("\n게임을 종료합니다.\n ");
                 }
                 else
                 {
@@ -251,7 +258,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static void Status(Character me) //상태 보기
+        /*public static void Status(Character me) //상태 보기
         {
             int a = 0;
             Console.Clear();
@@ -271,8 +278,8 @@ namespace ConsoleApp1
                     Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
                 }
             }
-        }
-        public static void Inventory(Character me) //인벤토리
+        }*/
+        /*public static void Inventory(Character me) //인벤토리
         {
             int a = 0;
             int count = 0;
@@ -395,8 +402,8 @@ namespace ConsoleApp1
                 }
                 
             }
-        }
-        public static void Shop(Character me)//상점
+        }*/
+        /*public static void Shop(Character me)//상점
         {
             int a = 0;
             Console.Clear();
@@ -501,8 +508,8 @@ namespace ConsoleApp1
                     }
                 }
             }
-        }
-        public static void Rest(Character me)//휴식
+        }*/
+        /*public static void Rest(Character me)//휴식
         {
             int a = 0;
             Console.Clear();
@@ -539,8 +546,8 @@ namespace ConsoleApp1
                     Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
                 }
             }
-        }
-        public static void Sell(Character me)//판매
+        }*/
+        /*public static void Sell(Character me)//판매
         {
             int b, a = 0;
 
@@ -595,7 +602,7 @@ namespace ConsoleApp1
                         }
                         me.gold += selected.price * 9 / 10;
                         selected.isBought = false;
-                        me.inventory[int.Parse(choice) - 1] = null;
+                        me.inventory.RemoveAt(int.Parse(choice) - 1);
                         b = 1;
                     }
                     else
@@ -605,8 +612,8 @@ namespace ConsoleApp1
                 }
 
             }
-        }
-        public static void EnterDungeon(Character me)//던전 입장
+        }*/
+        /*public static void EnterDungeon(Character me)//던전 입장
         {
             int a = 0;
             Console.Clear();
@@ -721,6 +728,6 @@ namespace ConsoleApp1
                     }
                 }
             }
-        }
+        }*/
     }
 }

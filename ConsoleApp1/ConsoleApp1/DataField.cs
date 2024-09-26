@@ -20,6 +20,5 @@ namespace ConsoleApp1
         public List<item> inventory;
         public int exp;
         public ItemList itemList;
-
     }
 }
