@@ -106,7 +106,7 @@ namespace ConsoleApp1
             public ItemList itemList;
 
         }*/
-        static void SaveData(Character me, ItemList itemList)
+        static void SaveData(Character me, ItemList itemList)//저장
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = new FileStream(".\\data.dat", FileMode.Create);
@@ -128,7 +128,7 @@ namespace ConsoleApp1
             fs.Close();
         }
 
-        static void LoadData(Character me, ItemList itemList)
+        static void LoadData(Character me, ItemList itemList)//불러오기
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = new FileStream(".\\data.dat", FileMode.Open);
@@ -153,7 +153,7 @@ namespace ConsoleApp1
             int a=0;
             string? choice;
             itemlist = new ItemList();
-            if (File.Exists(".\\data.dat"))
+            if (File.Exists(".\\data.dat"))//저장된 데이터 있는지 확인해서 불러오거나 새로 시작
             {
                 Console.Write($"저장된 데이터가 있습니다.\n불러오시겠습니까?\n\n1.불러오기\n2.새로 시작\n\n원하시는 행동을 입력해주세요.\n>>");
                 while (true)
@@ -179,7 +179,7 @@ namespace ConsoleApp1
             }
             
 
-            while (a==0)
+            while (a==0)//데이터가 없거나 새로 시작하는 경우 이름 결정
             {
                 Console.Clear();
                 Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.\n원하시는 이름을 결정해주세요.");
@@ -206,7 +206,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static void GameStart(Character me)
+        public static void GameStart(Character me)//메인 화면
         {
             int a = 0;
             Console.Clear();
@@ -251,7 +251,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static void Status(Character me) 
+        public static void Status(Character me) //상태 보기
         {
             int a = 0;
             Console.Clear();
@@ -272,16 +272,16 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static void Inventory(Character me) 
+        public static void Inventory(Character me) //인벤토리
         {
             int a = 0;
             int count = 0;
             Console.Clear();
             Console.WriteLine($"인벤토리\n보유 중인 아이템을 관리할 수 있습니다.\n\n[아이템 목록]\n"); 
-            foreach(item item in me.inventory)
+            foreach(item item in me.inventory)//아이템 목록 출력
             {
                 Console.Write($"- ");
-                if (me.inventory[count].isEquipped == true)
+                if (me.inventory[count].isEquipped == true)//장착되어 있을 경우 앞에 "[E]" 추가
                 {
                     Console.Write("[E]");
                 }
@@ -308,7 +308,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static void Equip(Character me)
+        public static void Equip(Character me)//아이템 장착
         {
             int b,a = 0;
 
@@ -396,7 +396,7 @@ namespace ConsoleApp1
                 
             }
         }
-        public static void Shop(Character me)
+        public static void Shop(Character me)//상점
         {
             int a = 0;
             Console.Clear();
@@ -439,7 +439,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static void Buy(Character me)
+        public static void Buy(Character me)//구매
         {
             int a = 0;
             int b;
@@ -502,7 +502,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static void Rest(Character me)
+        public static void Rest(Character me)//휴식
         {
             int a = 0;
             Console.Clear();
@@ -540,7 +540,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static void Sell(Character me)
+        public static void Sell(Character me)//판매
         {
             int b, a = 0;
 
@@ -606,7 +606,7 @@ namespace ConsoleApp1
 
             }
         }
-        public static void EnterDungeon(Character me)
+        public static void EnterDungeon(Character me)//던전 입장
         {
             int a = 0;
             Console.Clear();
@@ -641,15 +641,15 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static void DungeonResult(Character me, int difficulty)
+        public static void DungeonResult(Character me, int difficulty)//던전 결과
         {
             int a = 0;
-            int recommend = 0;
+            int recommend = 0;//권장 방어력
             bool cleared;
             int damage;
             int reward = 0;
-            string dif = "";
-            int bonus = 0;
+            string dif = "";//스테이지 난이도
+            int bonus = 0;//공격력에 따른 보너스 보상
             Random random = new Random();
             switch (difficulty)
             {
